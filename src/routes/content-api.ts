@@ -80,6 +80,11 @@ export interface ContentApi {
   routes: Hono<AppEnv>;
   /** 表示停止リストサービス（Phase 3b の /p ページでも再利用する） */
   denylist: DenylistService;
+  /**
+   * 本文取得サービス。/p ページのSSR表示可否判定でも同じ実装を共有する
+   * （screens.md 3.4「本文取得APIと同じ表示可否判定（実装を共有する）」）。
+   */
+  content: ContentService;
   /** 表示停止リストの定期再読み込みタイマーを停止する。 */
   stop(): void;
 }
@@ -87,7 +92,7 @@ export interface ContentApi {
 /**
  * 本文取得APIの依存一式（DID解決・ハンドル解決・本文サービス・表示停止リスト）を
  * 組み立てて返す統合ファクトリ。統括者はこれ1つを呼び、`routes` をマウントし、
- * `denylist` を /p ページと共有すればよい。
+ * `denylist`・`content` を /p ページと共有すればよい。
  */
 export function createContentApi(config: Config): ContentApi {
   const denylist = createDenylistService(config.denylistPath);
@@ -99,6 +104,7 @@ export function createContentApi(config: Config): ContentApi {
   return {
     routes,
     denylist,
+    content,
     stop(): void {
       denylist.stop();
     },
