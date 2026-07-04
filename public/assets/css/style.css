@@ -90,3 +90,77 @@ a {
   white-space: pre-wrap;
   word-break: break-word;
 }
+
+/* 利用規約・プライバシーポリシーなど法務ドキュメント（screens.md 3.7） */
+.legal-article {
+  line-height: var(--skyseal-line-height);
+}
+
+.legal-article h1 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+}
+
+.legal-article h2 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.legal-article section {
+  margin-bottom: 1.5rem;
+}
+
+.legal-article p {
+  margin: 0.75rem 0;
+}
+
+.legal-article ol {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+}
+
+.legal-article li {
+  margin: 0.5rem 0;
+}
+
+.legal-article code {
+  background-color: var(--skyseal-color-surface);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.9em;
+}
+
+/* テーブルのスクロールコンテナ（long document対応） */
+.table-container {
+  overflow-x: auto;
+  margin: 1rem 0;
+  border: 1px solid var(--skyseal-color-border);
+  border-radius: 0.25rem;
+}
+
+.legal-article table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--skyseal-color-surface);
+}
+
+.legal-article table th {
+  background-color: var(--skyseal-color-surface);
+  text-align: left;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--skyseal-color-border);
+  font-weight: 600;
+}
+
+.legal-article table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--skyseal-color-border);
+  vertical-align: top;
+}
+
+.legal-article table tr:last-child td {
+  border-bottom: none;
+}
