@@ -7,5 +7,6 @@
 - [oauth-session.md](./oauth-session.md) — OAuth・セッション管理設計（granular scope、トークン保管、CSRF対策）
 - [content-api.md](./content-api.md) — 本文取得API設計（DID解決、検証、表示停止判定、レート制限）
 - [screens.md](./screens.md) — 画面・ルーティング設計（7画面、投稿・削除処理）
+- [terms-and-privacy.md](./terms-and-privacy.md) — 利用規約・プライバシーポリシー文面案（draft）
 
 技術スタック選定は [ADR 0004](../adr/0004-tech-stack-typescript-hono.md) を参照。

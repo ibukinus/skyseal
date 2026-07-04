@@ -2,6 +2,8 @@
 
 ## 2026-07-04
 
+**Creation** — `design/terms-and-privacy.md`（利用規約・プライバシーポリシー文面案、draft）を新設。連絡手段はskyseal公式Blueskyアカウント（公開前に作成）とする。あわせて `design/screens.md` にUI共通方針（ダークモード対応、自前CSS・システムフォント）と規約ページの連絡手段を追記。
+
 **Creation** — MVP基本設計を新設。要件定義書（`requirements/mvp.md`）のレビューで過不足なしを確認した上で、`design/architecture.md`（システム構成・データフロー・セキュリティ方針）、`design/lexicon.md`（`jp.mp0.skyseal.post` スキーマと案内投稿の生成仕様）、`design/oauth-session.md`（granular scope・トークン保管・CSRF対策）、`design/content-api.md`（本文取得API、表示停止、レート制限、SSRF対策）、`design/screens.md`（7画面のルーティングと投稿・削除処理）を追加。技術スタック選定を `adr/0004-tech-stack-typescript-hono.md`（TypeScript + Hono + SQLite）として記録。外部レビュー（Codex）の指摘10件（OAuthの`sub`検証・confidential client認証の明記、専用ページの404応答、削除時の案内投稿検証、SSRF対策の一般化ほか）を反映済み。
 
 **Update** — サービス名を「sidepost」（仮称）から「skyseal」に変更（`adr/0003-rename-service-to-skyseal.md` を新設）。ドメインを `skyseal.mp0.jp`、独自レコードのNSIDを `jp.mp0.skyseal.post` に変更し、`requirements/mvp.md`（6.3）、`design/index.md`、`docs/index.md`、`AGENTS.md`、`guides/documentation-rules.md` の表記を更新。
