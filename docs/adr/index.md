@@ -4,3 +4,4 @@
 書き方は [文書管理ルール](../guides/documentation-rules.md) を参照。
 
 - [0001-adopt-okf-docs-structure.md](./0001-adopt-okf-docs-structure.md) — 文書管理にOKF準拠のdocs-as-code構成を採用する
+- [0002-fetch-spoiler-via-service-api.md](./0002-fetch-spoiler-via-service-api.md) — 専用ページの本文取得はサービスAPIを経由する
