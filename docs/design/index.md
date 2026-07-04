@@ -2,10 +2,10 @@
 
 アーキテクチャ、Lexiconスキーマ定義、画面設計などの設計文書を置く。
 
-まだ文書はない。今後の候補：
+- [architecture.md](./architecture.md) — アーキテクチャ概要（システム構成、コンポーネント、データフロー、セキュリティ・ログ方針）
+- [lexicon.md](./lexicon.md) — Lexicon定義（`jp.mp0.skyseal.post` のスキーマと案内投稿の生成仕様）
+- [oauth-session.md](./oauth-session.md) — OAuth・セッション管理設計（granular scope、トークン保管、CSRF対策）
+- [content-api.md](./content-api.md) — 本文取得API設計（DID解決、検証、表示停止判定、レート制限）
+- [screens.md](./screens.md) — 画面・ルーティング設計（7画面、投稿・削除処理）
 
-- Lexiconレコード定義（`jp.mp0.skyseal.post` のスキーマ）
-- システム構成図・アーキテクチャ概要
-- OAuthセッション管理の設計（前提として、OAuth granular scopeの仕様とPDS対応状況を調査する）
-- 本文取得APIの設計（PDS解決、レート制限、表示停止判定）
-- 技術スタック選定（ADRとして記録）
+技術スタック選定は [ADR 0004](../adr/0004-tech-stack-typescript-hono.md) を参照。
