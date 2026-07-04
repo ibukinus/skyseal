@@ -19,6 +19,7 @@ status: accepted
 | `POST /oauth/login` | ハンドル受け取り→OAuth認可へリダイレクト | 不要 |
 | `GET /oauth/callback` | OAuthコールバック | 不要 |
 | `GET /oauth/client-metadata.json` | クライアントメタデータ公開 | 不要 |
+| `GET /oauth/jwks.json` | クライアント認証用公開鍵集合（JWKS）の公開（[oauth-session.md 1.](./oauth-session.md)） | 不要 |
 | `GET /compose` | 投稿画面 | 必要 |
 | `POST /compose` | 投稿作成（成功時 `/compose/done/{rkey}` へリダイレクト） | 必要 + CSRF |
 | `GET /compose/done/{rkey}` | 投稿完了画面 | 必要 |
