@@ -1,3 +1,4 @@
+import { APPROX_BYTES_PER_CHAR } from "../client/compose.js";
 import { CSRF_FIELD_NAME } from "../middleware/csrf.js";
 import type { ComposeValidationError } from "../services/spoiler-post.js";
 import { SPOILER_TEXT_MAX_BYTES } from "../services/spoiler-post.js";
@@ -27,6 +28,10 @@ export interface ComposeFormProps {
 
 export function ComposeForm({ csrfToken, text, error }: ComposeFormProps) {
   const maxBytesLabel = SPOILER_TEXT_MAX_BYTES.toLocaleString("ja-JP");
+  // 空入力時の「残り文字数」初期表示。クライアントJS（computeCounterState）と同じ換算。
+  const initialCharsLabel = Math.floor(
+    SPOILER_TEXT_MAX_BYTES / APPROX_BYTES_PER_CHAR,
+  ).toLocaleString("ja-JP");
   return (
     <section class="compose">
       <h1>投稿</h1>
@@ -48,7 +53,7 @@ export function ComposeForm({ csrfToken, text, error }: ComposeFormProps) {
           data-max-bytes={SPOILER_TEXT_MAX_BYTES}
         >
           残り入力可能量（目安）: <span id="compose-counter-remaining">{maxBytesLabel}</span>{" "}
-          バイト（約 <span id="compose-counter-chars">0</span> 文字）
+          バイト（約 <span id="compose-counter-chars">{initialCharsLabel}</span> 文字）
         </p>
         <input type="hidden" name={CSRF_FIELD_NAME} value={csrfToken} />
         <button type="submit" id="compose-submit">

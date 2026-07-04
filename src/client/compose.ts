@@ -15,9 +15,10 @@
  */
 
 export const MAX_BYTES = 7500;
-// 全角文字1文字あたり最大3バイト（BMP範囲）を仮定した、文字数換算の目安の下限値。
-// あくまで目安であり、正確な文字数はUTF-8バイト数から一意に決まらない。
-const APPROX_BYTES_PER_CHAR = 3;
+// 全角文字1文字あたり最大3バイト（BMP範囲）を仮定した換算係数。この仮定での
+// 「残り入力可能な文字数」の下限目安を出す。あくまで目安であり、正確な文字数は
+// UTF-8バイト数から一意に決まらない。SSR初期表示（compose-form.tsx）も同じ係数を使う。
+export const APPROX_BYTES_PER_CHAR = 3;
 
 /** UTF-8バイト数を数える。`TextEncoder` はNode・ブラウザ双方のグローバルに存在する。 */
 export function byteLength(text: string): number {
@@ -30,13 +31,14 @@ export interface ComposeCounterState {
   overLimit: boolean;
 }
 
-/** 本文から残りバイト数・文字数換算の目安・上限超過の有無を算出する。 */
+/** 本文から残りバイト数・残り文字数換算の目安・上限超過の有無を算出する。 */
 export function computeCounterState(text: string): ComposeCounterState {
   const bytes = byteLength(text);
   const remainingBytes = MAX_BYTES - bytes;
   return {
     remainingBytes,
-    approxChars: Math.ceil(bytes / APPROX_BYTES_PER_CHAR),
+    // 「残り入力可能量」の文字数換算。上限超過時は0に丸める。
+    approxChars: Math.max(0, Math.floor(remainingBytes / APPROX_BYTES_PER_CHAR)),
     overLimit: remainingBytes < 0,
   };
 }

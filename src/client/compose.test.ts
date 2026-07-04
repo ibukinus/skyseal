@@ -44,9 +44,17 @@ describe("computeCounterState", () => {
     expect(state.overLimit).toBe(true);
   });
 
-  it("approxCharsはバイト数から文字数換算の目安を切り上げで算出する", () => {
-    const state = computeCounterState("a"); // 1バイト
-    expect(state.approxChars).toBe(1); // ceil(1/3) = 1
+  it("approxCharsは残りバイト数から残り文字数の目安を切り捨てで算出する", () => {
+    const empty = computeCounterState("");
+    expect(empty.approxChars).toBe(2500); // floor(7500/3)
+
+    const one = computeCounterState("a"); // 1バイト使用
+    expect(one.approxChars).toBe(2499); // floor(7499/3)
+  });
+
+  it("上限超過時のapproxCharsは0に丸める", () => {
+    const state = computeCounterState("a".repeat(MAX_BYTES + 10));
+    expect(state.approxChars).toBe(0);
   });
 });
 
