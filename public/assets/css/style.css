@@ -1,0 +1,92 @@
+/*
+ * skyseal 共通スタイル。
+ * - システムフォントスタックのみ（外部Webフォント不使用。CSPのstyle-src 'self'に適合）。
+ * - デザイントークンはCSSカスタムプロパティで定義し、prefers-color-schemeに追従する。
+ * - 手動でのライト/ダーク切り替えUIは設けない（screens.md 5.）。
+ */
+
+:root {
+  color-scheme: light dark;
+
+  --skyseal-color-bg: #ffffff;
+  --skyseal-color-surface: #f5f5f7;
+  --skyseal-color-text: #1a1a1a;
+  --skyseal-color-text-muted: #5c5c5c;
+  --skyseal-color-border: #d9d9dc;
+  --skyseal-color-accent: #0b5fff;
+  --skyseal-color-accent-text: #ffffff;
+  --skyseal-color-danger: #c8102e;
+
+  --skyseal-font-sans:
+    system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    "Yu Gothic UI", "Yu Gothic", Roboto, Meiryo, sans-serif;
+
+  --skyseal-line-height: 1.7;
+  --skyseal-content-width: 40rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --skyseal-color-bg: #121212;
+    --skyseal-color-surface: #1e1e1e;
+    --skyseal-color-text: #e6e6e6;
+    --skyseal-color-text-muted: #a3a3a3;
+    --skyseal-color-border: #3a3a3d;
+    --skyseal-color-accent: #6ea8ff;
+    --skyseal-color-accent-text: #0b1a33;
+    --skyseal-color-danger: #ff6b7a;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--skyseal-color-bg);
+  color: var(--skyseal-color-text);
+  font-family: var(--skyseal-font-sans);
+  line-height: var(--skyseal-line-height);
+}
+
+a {
+  color: var(--skyseal-color-accent);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--skyseal-content-width);
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+.page-footer {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  padding: 1.25rem;
+  border-top: 1px solid var(--skyseal-color-border);
+  color: var(--skyseal-color-text-muted);
+  font-size: 0.875rem;
+}
+
+/* 専用ページの本文は改行を保持しつつ読みやすさを優先する（screens.md 5.） */
+.spoiler-text {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
